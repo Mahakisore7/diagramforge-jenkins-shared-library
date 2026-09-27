@@ -1,4 +1,10 @@
 def call(Map config) {
+    // Optional path (relative to the dir() the caller is already in) to a
+    // dependency-check suppression file, for verified false positives -
+    // e.g. NVD CPE collisions between the mongodb npm driver and the
+    // MongoDB Server product. Never used to silence a real finding.
+    def suppressionArg = config.suppressionFile ? "--suppression ${config.suppressionFile}" : ""
+
     // Bound from a Jenkins credential so the key is masked in build logs.
     withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_API_KEY')]) {
         sh """
@@ -10,6 +16,7 @@ def call(Map config) {
               --disableOssIndex \
               --disableCentral \
               --disableYarnAudit \
+              ${suppressionArg} \
               --failOnCVSS 8
         """
     }
