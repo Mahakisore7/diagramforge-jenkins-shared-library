@@ -5,6 +5,7 @@ def call(Map config) {
             mkdir -p dependency-check-report
             dependency-check.sh --project "${config.projectName}" --scan ${config.scanPath} \
               --format HTML --format JSON --out dependency-check-report \
+              --data /var/lib/jenkins/dependency-check-data \
               --nvdApiKey \$NVD_API_KEY \
               --failOnCVSS 8
         """
