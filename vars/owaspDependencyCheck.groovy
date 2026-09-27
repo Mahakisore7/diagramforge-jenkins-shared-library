@@ -7,6 +7,9 @@ def call(Map config) {
               --format HTML --format JSON --out dependency-check-report \
               --data /var/lib/jenkins/dependency-check-data \
               --nvdApiKey \$NVD_API_KEY \
+              --disableOssIndex \
+              --disableCentral \
+              --disableYarnAudit \
               --failOnCVSS 8
         """
     }
