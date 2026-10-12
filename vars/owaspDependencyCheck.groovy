@@ -16,6 +16,7 @@ def call(Map config) {
               --disableOssIndex \
               --disableCentral \
               --disableYarnAudit \
+              --disablePnpmAudit \
               ${suppressionArg} \
               --failOnCVSS 8
         """
